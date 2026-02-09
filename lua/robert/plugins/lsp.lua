@@ -9,7 +9,13 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      {
+        'j-hui/fidget.nvim',
+        opts = {
+          progress = { display = { done_icon = '✓', done_ttl = 1 } },
+          notification = { window = { winblend = 0 } },
+        },
+      },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -74,7 +80,8 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
+        ruff = {},
         -- rust_analyzer = {},
         -- ts_ls = {},
       }
@@ -84,6 +91,7 @@ return {
       vim.list_extend(ensure_installed, {
         'lua-language-server',
         'stylua',
+        'pyright',
         -- add more tools here later
       })
 
