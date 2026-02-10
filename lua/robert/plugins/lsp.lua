@@ -75,13 +75,23 @@ return {
       -- Capabilities from blink.cmp
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      -- Ensure encoding is consistent
+      capabilities.general = capabilities.general or {}
+      capabilities.general.positionEncodings = { 'utf-16' }
+
       -- Enable the following language servers
       -- Add servers here later (pyright, ts_ls, etc.)
       local servers = {
         -- clangd = {},
         -- gopls = {},
         pyright = {},
-        ruff = {},
+        ruff = {
+          init_options = {
+            settings = {
+              diagnostics = false,
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ts_ls = {},
       }
@@ -92,6 +102,7 @@ return {
         'lua-language-server',
         'stylua',
         'pyright',
+        'ruff',
         -- add more tools here later
       })
 
