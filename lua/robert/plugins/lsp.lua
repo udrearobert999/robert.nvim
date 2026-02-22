@@ -80,18 +80,22 @@ return {
       capabilities.general.positionEncodings = { 'utf-16' }
 
       -- Enable the following language servers
-      -- Add servers here later (pyright, ts_ls, etc.)
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        pyright = {},
-        ruff = {
-          init_options = {
-            settings = {
-              diagnostics = false,
+        basedpyright = {
+          handlers = {
+            ['textDocument/publishDiagnostics'] = function() end,
+          },
+          settings = {
+            basedpyright = {
+              analysis = {
+                useLibraryCodeForTypes = true,
+              },
             },
           },
         },
+        ruff = {},
         -- rust_analyzer = {},
         -- ts_ls = {},
       }
@@ -101,7 +105,7 @@ return {
       vim.list_extend(ensure_installed, {
         'lua-language-server',
         'stylua',
-        'pyright',
+        'basedpyright',
         'ruff',
         -- add more tools here later
       })
