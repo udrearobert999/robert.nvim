@@ -16,8 +16,8 @@ require('lazy').setup({
   require 'robert.plugins.completion',
   require 'robert.plugins.treesitter',
   require 'robert.plugins.formatting',
-  require 'robert.plugins.misc',
-  require 'robert.plugins.git',
+  require 'robert.plugins.gitsigns',
+  require 'robert.plugins.fugitive',
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
